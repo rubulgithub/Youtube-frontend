@@ -1,0 +1,31 @@
+.box {
+  display: flex;
+}
+.box .input-box input {
+  width: 93%;
+  padding: 0.625rem 10px;
+  font-size: 1rem;
+  letter-spacing: 0.062rem;
+  margin-bottom: 1.875rem;
+  border: 1px solid #ccc;
+  background: transparent;
+  background-color: #e3d5ca;
+  border-radius: 4px;
+}
+.form-container {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: #d4a373;
+  width: 25rem;
+  padding: 2.5rem;
+  box-sizing: border-box;
+  border: 1px solid #dadce0;
+  -webkit-border-radius: 8px;
+  border-radius: 8px;
+}
+.button-container {
+  display: flex;
+  justify-content: space-between;
+}

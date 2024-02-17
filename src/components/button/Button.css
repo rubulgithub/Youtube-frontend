@@ -1,0 +1,10 @@
+.button-class button {
+  border-radius: 8px;
+  color: white;
+  background-color: #3049bb;
+  font-weight: 500;
+  letter-spacing: 0.25px;
+  padding: 8px;
+  cursor: pointer;
+  border: none;
+}

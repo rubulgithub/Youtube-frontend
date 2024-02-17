@@ -1,0 +1,37 @@
+.create {
+  display: flex;
+  align-items: center;
+  margin-right: 10px;
+  position: relative; /* Added position relative */
+}
+
+.modal-wrapper {
+  position: absolute;
+  top: 100%; /* Position below the create button */
+  left: 0;
+  right: 0;
+}
+
+.modal-content {
+  background: white;
+  padding: 20px;
+  border-radius: 8px;
+}
+
+.modal-content h2 {
+  color: #333;
+}
+
+.modal-content p {
+  color: #555;
+}
+
+.overlay {
+  width: 100vw;
+  height: 100vh;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  position: fixed;
+}

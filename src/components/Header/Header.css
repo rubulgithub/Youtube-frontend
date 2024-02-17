@@ -1,0 +1,78 @@
+nav {
+  padding: 10px 2%;
+  height: 56px;
+  display: flex;
+  justify-content: space-between;
+  background: #fff;
+  position: sticky;
+  top: 0;
+  z-index: 10;
+}
+
+.nav-left {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+.menu img {
+  width: 35px;
+}
+.logo img {
+  width: 42px;
+}
+.nav-middle .search-box {
+  border: 1px solid #ccc;
+  margin-right: 15px;
+  padding: 8px 12px;
+  border-radius: 25px;
+}
+.nav-middle .search-box input {
+  margin-left: 32px;
+  width: 400px;
+  border: 0;
+  outline: 0;
+  background: transparent;
+}
+.nav-middle .search-box img {
+  width: 15px;
+}
+
+.nav-right {
+  display: flex;
+  align-items: center;
+}
+.nav-right img {
+  width: 32px;
+  height: 32px;
+  margin: 0 8px;
+}
+
+.nav-right button {
+  width: 60px;
+  margin-right: 0;
+}
+body.active-modal {
+  overflow-y: hidden;
+}
+
+.modal {
+  position: fixed;
+}
+.create {
+  position: relative;
+  margin-top: 12px;
+}
+
+.nav-right .far-right {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 20px;
+}
+
+.dropdown button {
+  padding: 10px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
