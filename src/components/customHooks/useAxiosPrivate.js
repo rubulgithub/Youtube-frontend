@@ -5,7 +5,8 @@ import { useSelector } from "react-redux";
 
 const useAxiosPrivate = () => {
   const refresh = useRefreshToken();
-  const auth = useSelector((state) => state.auth.userData);
+  const auth = useSelector((state) => state.auth?.userData);
+  // console.log(auth);
   useEffect(() => {
     const requestInterceptor = axiosPrivate.interceptors.request.use(
       (config) => {
@@ -23,6 +24,7 @@ const useAxiosPrivate = () => {
         if (error?.response?.status === 401 && !prevRequest?.sent) {
           prevRequest.sent = true;
           const newAccessToken = await refresh();
+          // console.log(newAccessToken);
           prevRequest.headers["Authorization"] = `Bearer ${newAccessToken}`;
           return axiosPrivate(prevRequest);
         }
