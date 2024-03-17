@@ -25,15 +25,17 @@ const videoSlice = createSlice({
     },
     getAllVideos: (state, action) => {
       state.loading = false;
-      state.videos.docs = [...state.videos.docs, ...action.payload.docs];
+      state.videos.docs = action.payload.docs;
       state.videos.hasNextPage = action.payload.hasNextPage;
     },
     videoUploading: (state) => {
       state.uploading = true;
     },
-    videoUploaded: (state) => {
+    videoUploaded: (state, action) => {
       state.uploading = false;
       state.uploaded = true;
+      state.video = action.payload;
+      // console.log(state.video);
     },
     togglePublishStatus: (state) => {
       state.publishToggled = !state.publishToggled;

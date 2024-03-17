@@ -5,14 +5,12 @@ import "./index.css";
 import store from "./store/Store.js";
 import { Provider } from "react-redux";
 import { RouterProvider, createBrowserRouter } from "react-router-dom";
-// import Signin from "./components/signin/Signin.jsx";
-import Home from "./components/home/Home.jsx";
-// import CreateAccount from "./components/createAccount/CreateAccount.jsx";
-import User from "./components/user/User.jsx";
 import MyProfile from "./components/myProfile/MyProfile.jsx";
 import Login from "./components/Login.jsx";
 import SignUp from "./components/SignUp.jsx";
 import UploadVideo from "./components/UploadVideo.jsx";
+import HomePage from "./pages/HomePage.jsx";
+import VideoDetail from "./pages/VideoDetail.jsx";
 
 const router = createBrowserRouter([
   {
@@ -20,8 +18,8 @@ const router = createBrowserRouter([
     element: <App />,
     children: [
       {
-        path: "/",
-        element: <Home />,
+        path: "",
+        element: <HomePage />,
       },
       {
         path: "/login",
@@ -32,16 +30,16 @@ const router = createBrowserRouter([
         element: <SignUp />,
       },
       {
-        path: "/user",
-        element: <User />,
-      },
-      {
         path: "/profile",
         element: <MyProfile />,
       },
       {
         path: "/upload-video",
         element: <UploadVideo />,
+      },
+      {
+        path: "/watch/:videoId",
+        element: <VideoDetail />,
       },
     ],
   },

@@ -5,11 +5,14 @@ import { useDispatch, useSelector } from "react-redux";
 import Button from "./Button";
 import InputVideo from "./InputVideo";
 import useAxiosPrivate from "./customHooks/useAxiosPrivate";
+import { videoUploaded, videoUploading } from "../store/slices/videoSlice";
+import UploadingVideo from "./UploadingVideo";
 
 function UploadVideo({ setUploadVideoPopup }) {
   const [videoName, setVideoName] = useState("");
   const [videoSize, setVideoSize] = useState(0);
   const axiosPrivate = useAxiosPrivate();
+
   const {
     handleSubmit,
     register,
@@ -18,52 +21,57 @@ function UploadVideo({ setUploadVideoPopup }) {
   const dispatch = useDispatch();
   const uploading = useSelector((state) => state.video.uploading);
   const uploaded = useSelector((state) => state.video.uploaded);
-  //   console.log(uploading);
-  //   console.log(uploaded);
+  const uploadV = useSelector((state) => state.video.video);
+  // console.log("Upload video: ", uploadV);
+
+  // console.log("Uploading: ", uploading);
+  // console.log("Uploaded: ", uploaded);
 
   const publishVideo = async (data) => {
-    console.log(data.videoFile[0]);
-
     setVideoSize(Math.floor(data.videoFile[0].size / (1024 * 1024)));
     const formData = new FormData();
     formData.append("videoFile", data.videoFile[0]);
     formData.append("thumbnail", data.thumbnail[0]);
     formData.append("title", data.title);
     formData.append("description", data.description);
-
+    dispatch(videoUploading());
     try {
-      console.log(formData);
+      // console.log(formData);
       const res = await axiosPrivate.post("/api/v1/video", formData);
-      console.log(res);
+      // console.log("Upload Video: ", res);
+      if (res.status === 200) {
+        dispatch(videoUploaded(res.data.data));
+      }
+      // console.log("Res: ", res);
     } catch (error) {
       console.log(error);
     }
   };
 
-  //   if (uploading) {
-  //     return (
-  //       <>
-  //         <UploadingVideo
-  //           setUploadVideoPopup={setUploadVideoPopup}
-  //           videoFileName={videoName}
-  //           fileSize={videoSize}
-  //         />
-  //       </>
-  //     );
-  //   }
+  if (uploading) {
+    return (
+      <>
+        <UploadingVideo
+          setUploadVideoPopup={setUploadVideoPopup}
+          videoFileName={videoName}
+          fileSize={videoSize}
+        />
+      </>
+    );
+  }
 
-  //   if (uploaded) {
-  //     return (
-  //       <>
-  //         <UploadingVideo
-  //           setUploadVideoPopup={setUploadVideoPopup}
-  //           videoFileName={videoName}
-  //           fileSize={videoSize}
-  //           uploaded={true}
-  //         />
-  //       </>
-  //     );
-  //   }
+  if (uploaded) {
+    return (
+      <>
+        <UploadingVideo
+          setUploadVideoPopup={setUploadVideoPopup}
+          videoFileName={videoName}
+          fileSize={videoSize}
+          uploaded={true}
+        />
+      </>
+    );
+  }
 
   return (
     <>
@@ -82,7 +90,7 @@ function UploadVideo({ setUploadVideoPopup }) {
                 <Button
                   className="bg-purple-500 py-1 px-2 font-bold"
                   textColor="text-black"
-                  type="submit"
+                  type="button"
                 >
                   Save
                 </Button>
