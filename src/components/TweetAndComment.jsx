@@ -2,9 +2,8 @@ import React from "react";
 import Button from "./Button.jsx";
 import { useForm } from "react-hook-form";
 import { useDispatch, useSelector } from "react-redux";
-import { createTweet } from "../store/slices/tweetSlice.jsx";
 import useAxiosPrivate from "./customHooks/useAxiosPrivate.js";
-import { createAComment } from "../store/slices/commentSlice.js";
+import { createTweet } from "../store/Slices/tweetSlice.js";
 
 function TweetAndComment({ tweet, comment, videoId }) {
   const { register, handleSubmit, setValue } = useForm();
@@ -12,7 +11,7 @@ function TweetAndComment({ tweet, comment, videoId }) {
   const axiosPrivate = useAxiosPrivate();
 
   const comments = useSelector((state) => state.comment?.comments);
-  console.log("Comments from TAC:", comments);
+  // console.log("Comments from TAC:", comments);
 
   const sendContent = async (data) => {
     if (data) {
@@ -20,7 +19,7 @@ function TweetAndComment({ tweet, comment, videoId }) {
         const res = await axiosPrivate.post("/api/v1/tweets", {
           content: data.content,
         });
-        console.log("Tweet Res:", res);
+        // console.log("Tweet Res:", res);
         if (res.status === 200) {
           dispatch(createTweet(res.data.data));
         }
@@ -28,7 +27,7 @@ function TweetAndComment({ tweet, comment, videoId }) {
         const res = await axiosPrivate.post(`/api/v1/comments/${videoId}`, {
           content: data.content,
         });
-        console.log("Comment res", res);
+        // console.log("Comment res", res);
         if (res.status === 200) {
           dispatch(createAComment(res.data.data));
           setValue("content", "");

@@ -74,7 +74,7 @@ const Header = () => {
   const handleLogout = async () => {
     try {
       const res = await axiosPrivate.post("/api/v1/users/logout");
-      console.log(res.status);
+      // console.log(res.status);
       dispatch(logout());
       navigate("/login");
     } catch (error) {

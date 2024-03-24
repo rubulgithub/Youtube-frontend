@@ -11,7 +11,8 @@ import { NavLink } from "react-router-dom";
 import { useSelector } from "react-redux";
 
 function Sidebar() {
-  const username = useSelector((state) => state.auth?.userData?.username);
+  const username = useSelector((state) => state.auth?.userData?.user?.username);
+  // console.log("username from sidebar", username);
   const sidebarTopItems = [
     {
       icon: <RiHome6Line size={25} />,

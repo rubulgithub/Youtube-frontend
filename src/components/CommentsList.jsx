@@ -28,13 +28,13 @@ function CommentsList({
   });
 
   const handleEditComment = async (editedContent) => {
-    console.log(editedContent);
+    // console.log(editedContent);
     try {
       const res = await axiosPrivate.patch(
         `/api/v1/comments/c/${commentId}`,
         editedContent
       );
-      console.log(res);
+      // console.log(res);
       setEditState((prevState) => ({
         ...prevState,
         editing: false,
@@ -52,7 +52,7 @@ function CommentsList({
       const deleteRes = await axiosPrivate.delete(
         `/api/v1/comments/c/${commentId}`
       );
-      console.log(deleteRes);
+      // console.log(deleteRes);
       setEditState((prevState) => ({
         ...prevState,
         delete: false,

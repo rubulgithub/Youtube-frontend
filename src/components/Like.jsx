@@ -28,7 +28,7 @@ const Like = ({
       try {
         const res = await axiosPrivate.post(`/api/v1/likes/t/${tweetId}`);
 
-        console.log(res);
+        // console.log(res);
       } catch (error) {
         console.log(error);
       }
@@ -37,7 +37,7 @@ const Like = ({
       try {
         const res = await axiosPrivate.post(`/api/v1/likes/c/${commentId}`);
 
-        console.log(res);
+        // console.log(res);
       } catch (error) {
         console.log(error);
       }
@@ -46,7 +46,7 @@ const Like = ({
       try {
         const res = await axiosPrivate.post(`/api/v1/likes/v/${videoId}`);
 
-        console.log(res);
+        // console.log(res);
       } catch (error) {
         console.log(error);
       }

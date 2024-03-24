@@ -29,7 +29,7 @@ function Description({
       const res = await axiosPrivate.post(
         `/api/v1/subscriptions/c/${channelId}`
       );
-      console.log("SubscriptionRes: ", res);
+      // console.log("SubscriptionRes: ", res);
       setLocalIsSubscribed((prev) => !prev);
       if (localIsSubscribed) {
         setLocalSubscribersCount((prev) => prev - 1);

@@ -22,7 +22,8 @@ function UploadVideo({ setUploadVideoPopup }) {
   const uploading = useSelector((state) => state.video.uploading);
   const uploaded = useSelector((state) => state.video.uploaded);
   const uploadV = useSelector((state) => state.video.video);
-  // console.log("Upload video: ", uploadV);
+  const uploadafter = useSelector((state) => state.video);
+  // console.log("Upload video: ", uploadafter);
 
   // console.log("Uploading: ", uploading);
   // console.log("Uploaded: ", uploaded);

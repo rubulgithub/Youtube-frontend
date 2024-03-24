@@ -27,7 +27,7 @@ function SignUp() {
     formData.append("fullName", data.fullName);
 
     try {
-      console.log(formData);
+      // console.log(formData);
       const registerRes = await axiosInstance.post(
         "/api/v1/users/register",
         formData

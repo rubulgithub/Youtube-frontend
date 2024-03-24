@@ -9,9 +9,11 @@ const useRefreshToken = () => {
       const response = await axios.post("/api/v1/users/refresh-token", {
         withCredentials: true,
       });
-      console.log(response);
-      dispatch(login(response));
-      return response;
+      // console.log(response);?
+      if (response.status === 200) {
+        dispatch(login(response.data.data));
+      }
+      return response.data.data;
     } catch (error) {
       console.log(error);
     }

@@ -11,6 +11,16 @@ import SignUp from "./components/SignUp.jsx";
 import UploadVideo from "./components/UploadVideo.jsx";
 import HomePage from "./pages/HomePage.jsx";
 import VideoDetail from "./pages/VideoDetail.jsx";
+import AdminDashboard from "./pages/AdminDashboard.jsx";
+import LikedVideos from "./pages/LikedVideos.jsx";
+import Channel from "./pages/Channel/Channel.jsx";
+import ChannelVideos from "./pages/Channel/ChannelVideos.jsx";
+import ChannelPlaylist from "./pages/Channel/ChannelPlaylist.jsx";
+import ChannelTweets from "./pages/Channel/ChannelTweets.jsx";
+import ChannelSubscribers from "./pages/Channel/ChannelSubscribers.jsx";
+import History from "./pages/History.jsx";
+import MySubscriptions from "./pages/MySubscriptions.jsx";
+import AuthLayout from "./components/AuthLayout.jsx";
 
 const router = createBrowserRouter([
   {
@@ -19,19 +29,35 @@ const router = createBrowserRouter([
     children: [
       {
         path: "",
-        element: <HomePage />,
+        element: (
+          <AuthLayout authentication={false}>
+            <HomePage />
+          </AuthLayout>
+        ),
       },
       {
         path: "/login",
-        element: <Login />,
+        element: (
+          <AuthLayout authentication={false}>
+            <Login />
+          </AuthLayout>
+        ),
       },
       {
         path: "/signup",
-        element: <SignUp />,
+        element: (
+          <AuthLayout authentication={false}>
+            <SignUp />
+          </AuthLayout>
+        ),
       },
       {
         path: "/profile",
-        element: <MyProfile />,
+        element: (
+          <AuthLayout authentication>
+            <MyProfile />
+          </AuthLayout>
+        ),
       },
       {
         path: "/upload-video",
@@ -39,7 +65,85 @@ const router = createBrowserRouter([
       },
       {
         path: "/watch/:videoId",
-        element: <VideoDetail />,
+        element: (
+          <AuthLayout authentication>
+            <VideoDetail />
+          </AuthLayout>
+        ),
+      },
+      {
+        path: "/collections",
+        element: (
+          <AuthLayout authentication>
+            <AdminDashboard />
+          </AuthLayout>
+        ),
+      },
+      {
+        path: "/liked-videos",
+        element: (
+          <AuthLayout authentication>
+            <LikedVideos />
+          </AuthLayout>
+        ),
+      },
+      {
+        path: "/channel/:username",
+        element: (
+          <AuthLayout authentication>
+            <Channel />
+          </AuthLayout>
+        ),
+        children: [
+          {
+            path: "videos",
+            element: (
+              <AuthLayout authentication>
+                <ChannelVideos />,
+              </AuthLayout>
+            ),
+          },
+          {
+            path: "playlists",
+            element: (
+              <AuthLayout authentication>
+                <ChannelPlaylist />,
+              </AuthLayout>
+            ),
+          },
+          {
+            path: "tweets",
+            element: (
+              <AuthLayout authentication>
+                <ChannelTweets />
+              </AuthLayout>
+            ),
+          },
+          {
+            path: "subscribed",
+            element: (
+              <AuthLayout authentication>
+                <ChannelSubscribers />,
+              </AuthLayout>
+            ),
+          },
+        ],
+      },
+      {
+        path: "/history",
+        element: (
+          <AuthLayout authentication>
+            <History />,
+          </AuthLayout>
+        ),
+      },
+      {
+        path: "/subscriptions",
+        element: (
+          <AuthLayout authentication>
+            <MySubscriptions />,
+          </AuthLayout>
+        ),
       },
     ],
   },
